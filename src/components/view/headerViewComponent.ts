@@ -38,7 +38,13 @@ export class HeaderViewComponent {
         imgBasket.classList.add('basket-img');
         imgBasket.src = require('../../assets/shopping-basket.png');
         divEl.append(imgLogo);
-        divBasket.append(imgBasket);
+        const amountGoods = document.createElement('span');
+        amountGoods.classList.add('amount-goods');
+        amountGoods.textContent = '0';
+        const clearBtn = document.createElement('button');
+        clearBtn.classList.add('clear-btn');
+        clearBtn.textContent = 'Clear';
+        divBasket.append(imgBasket, amountGoods, clearBtn);
         this.element.append(divEl, wrapperTotalPrice, divBasket);
     }
 }
