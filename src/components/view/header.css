@@ -16,3 +16,20 @@
 .card-euro-symb {
   color: #fff;
 }
+
+.wrapper-basket {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.amount-goods {
+  color: #fff;
+}
+
+.clear-btn {
+  color: black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}

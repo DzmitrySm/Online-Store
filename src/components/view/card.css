@@ -29,4 +29,9 @@
 
 .add-prod-btn {
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.active-card {
+  background: darkseagreen;
 }

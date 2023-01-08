@@ -1,4 +1,6 @@
-export let storage = [
+import { ICard } from '../types/index';
+
+export const storage: ICard[] = [
     {
         id: 1,
         title: 'iPhone 9',
@@ -95,7 +97,7 @@ export let storage = [
         discountPercentage: 11.02,
         rating: 4.57,
         stock: 83,
-        brand: 'APPle',
+        brand: 'Apple',
         category: 'laptops',
         thumbnail: 'https://i.dummyjson.com/data/products/6/thumbnail.png',
         images: [
