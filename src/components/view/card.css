@@ -1,0 +1,41 @@
+.wrapper-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.wrapper-card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  gap: 10px;
+  border: 1px solid black;
+}
+
+.card-image {
+  width: 100%;
+  display: block;
+  height: 140px;
+  object-fit: contain;
+}
+
+.wrapper-btn {
+  padding-bottom: 20px;
+}
+
+.add-prod-btn {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.active-card {
+  background: darkseagreen;
+}
+
+.small-size-img {
+  height: 70px;
+}

@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: black;
+}
+
+.card-total-txt {
+  color: #fff;
+}
+
+.card-total-number {
+  color: #fff;
+}
+
+.card-euro-symb {
+  color: #fff;
+}
+
+.wrapper-basket {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.amount-goods {
+  color: #fff;
+}
+
+.clear-btn {
+  color: black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
