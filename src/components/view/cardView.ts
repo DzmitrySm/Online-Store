@@ -31,6 +31,7 @@ export class CardView {
             categoryWrapper.append(categorySpan, categorySpanValue);
             cardItemWrapper.append(categoryWrapper);
             const brandWrapper = document.createElement('div');
+            brandWrapper.classList.add('wrapper-brand');
             const brandSpan = document.createElement('span');
             const brandSpanValue = document.createElement('span');
             brandSpan.textContent = 'Brand: ';
@@ -39,6 +40,7 @@ export class CardView {
             brandWrapper.append(brandSpan, brandSpanValue);
             cardItemWrapper.append(brandWrapper);
             const priceWrapper = document.createElement('div');
+            priceWrapper.classList.add('wrapper-price');
             const priceSpan = document.createElement('span');
             const priceSpanValue = document.createElement('span');
             priceSpan.textContent = 'Price: ';
@@ -46,6 +48,7 @@ export class CardView {
             priceWrapper.append(priceSpan, priceSpanValue);
             cardItemWrapper.append(priceWrapper);
             const ratingWrapper = document.createElement('div');
+            ratingWrapper.classList.add('wrapper-rating');
             const ratingSpan = document.createElement('span');
             const ratingSpanValue = document.createElement('span');
             ratingSpan.textContent = 'Rating: ';
@@ -53,6 +56,7 @@ export class CardView {
             ratingWrapper.append(ratingSpan, ratingSpanValue);
             cardItemWrapper.append(ratingWrapper);
             const stockWrapper = document.createElement('div');
+            stockWrapper.classList.add('wrapper-stock');
             const stockSpan = document.createElement('span');
             const stockSpanValue = document.createElement('span');
             stockSpan.textContent = 'Stock: ';
@@ -73,6 +77,9 @@ export class CardView {
         function setLocation(currentUrl: string) {
             location.hash = currentUrl;
         }
+        const wrapperAllItems = Array.from(document.querySelectorAll('.wrapper-card-item'));
+        const spanCountProd = document.querySelector('.found-count');
+        (spanCountProd as HTMLSpanElement).textContent = `${wrapperAllItems.length}`;
         const selectSorts = Array.from(document.querySelectorAll('select'));
         selectSorts.map((x) =>
             x.addEventListener('change', (event: Event) => {
@@ -126,11 +133,13 @@ export class CardView {
             x.addEventListener('change', function (event) {
                 const target = (event.target as Element).getAttribute('id');
                 const wrapperItems = Array.from(document.querySelectorAll('.wrapper-card-item'));
+                const spanCountProd = document.querySelector('.found-count');
                 if ((event.target as HTMLInputElement).checked) {
                     wrapperItems.map((x) =>
                         x.getAttribute('cat') === target ? arr.push(x) : ((x as HTMLDivElement).style.display = 'none')
                     );
                     arr.map((x) => ((x as HTMLDivElement).style.display = 'flex'));
+                    (spanCountProd as HTMLSpanElement).textContent = `${arr.length}`;
                 }
                 if ((event.target as HTMLInputElement).checked === false) {
                     const invisibleCard = arr.filter((x) => target === x.getAttribute('cat'));
@@ -152,11 +161,13 @@ export class CardView {
             x.addEventListener('change', function (event: Event) {
                 const target = (event.target as Element).getAttribute('id');
                 const wrapperItems = Array.from(document.querySelectorAll('.wrapper-card-item'));
+                const spanCountProd = document.querySelector('.found-count');
                 if ((event.target as HTMLInputElement).checked) {
                     wrapperItems.map((x) =>
                         x.id === target ? arr.push(x) : ((x as HTMLDivElement).style.display = 'none')
                     );
                     arr.map((x) => ((x as HTMLDivElement).style.display = 'flex'));
+                    (spanCountProd as HTMLSpanElement).textContent = `${arr.length}`;
                 }
                 if ((event.target as HTMLInputElement).checked === false) {
                     const invisibleCard = arr.filter((x) => target === x.id);
@@ -177,6 +188,7 @@ export class CardView {
         const range = document.querySelector('.input-item-price');
         (range as HTMLInputElement).addEventListener('input', () => {
             const wrapperItems = Array.from(document.querySelectorAll('.wrapper-card-item'));
+            const spanCountProd = document.querySelector('.found-count');
             const filteredPriceArr = wrapperItems.filter(
                 (x) => Number((x as HTMLDivElement).getAttribute('price')) <= Number((range as HTMLInputElement).value)
             );
@@ -184,10 +196,12 @@ export class CardView {
             filteredPriceArr.map((x) => ((x as HTMLDivElement).style.display = 'flex'));
             const maxPriceValue = document.querySelector('.max-price-value');
             (maxPriceValue as HTMLSpanElement).textContent = (range as HTMLInputElement).value.toString();
+            (spanCountProd as HTMLSpanElement).textContent = `${filteredPriceArr.length}`;
         });
         const rangeRating = document.querySelector('.input-item-rating');
         (rangeRating as HTMLInputElement).addEventListener('input', () => {
             const wrapperItems = Array.from(document.querySelectorAll('.wrapper-card-item'));
+            const spanCountProd = document.querySelector('.found-count');
             const filteredPriceArr = wrapperItems.filter(
                 (x) =>
                     Number((x as HTMLDivElement).getAttribute('rating')) <=
@@ -197,6 +211,7 @@ export class CardView {
             filteredPriceArr.map((x) => ((x as HTMLDivElement).style.display = 'flex'));
             const maxRatingValue = document.querySelector('.max-rating-value');
             (maxRatingValue as HTMLSpanElement).textContent = (rangeRating as HTMLInputElement).value.toString();
+            (spanCountProd as HTMLSpanElement).textContent = `${filteredPriceArr.length}`;
         });
         const totalBinPrice = document.querySelector('.card-total-number');
         const wrapperItems = Array.from(document.querySelectorAll('.wrapper-card-item'));
@@ -233,5 +248,24 @@ export class CardView {
                 }
             })
         );
+        const divBtnsVersion = document.querySelector('.wrapper-btns-styles');
+        (divBtnsVersion as HTMLDivElement).addEventListener('click', (event: Event) => {
+            const condition = true;
+            const targetBtn = event.target;
+            const allProdImg = Array.from(document.querySelectorAll('.card-image'));
+            const allWrapperRating = Array.from(document.querySelectorAll('.wrapper-rating'));
+            const allWrapperStock = Array.from(document.querySelectorAll('.wrapper-stock'));
+            switch (condition) {
+                case (targetBtn as HTMLButtonElement).textContent === 'Small Version':
+                    allProdImg.forEach((x) => x.classList.add('small-size-img'));
+                    allWrapperRating.forEach((x) => ((x as HTMLDivElement).style.display = 'none'));
+                    allWrapperStock.forEach((x) => ((x as HTMLDivElement).style.display = 'none'));
+                    break;
+                case (targetBtn as HTMLButtonElement).textContent === 'Big Version':
+                    allProdImg.forEach((x) => x.classList.remove('small-size-img'));
+                    allWrapperRating.forEach((x) => ((x as HTMLDivElement).style.display = 'block'));
+                    allWrapperStock.forEach((x) => ((x as HTMLDivElement).style.display = 'block'));
+            }
+        });
     }
 }

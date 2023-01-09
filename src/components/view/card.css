@@ -35,3 +35,7 @@
 .active-card {
   background: darkseagreen;
 }
+
+.small-size-img {
+  height: 70px;
+}
