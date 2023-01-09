@@ -1,5 +1,10 @@
+import { CardModel } from '../model/index';
+import { CardView } from '../view/cardView';
+
 export class CardController {
-    constructor(view, model) {
+    model;
+    view;
+    constructor(view: CardView, model: CardModel) {
         this.view = view;
         this.model = model;
     }

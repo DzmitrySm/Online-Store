@@ -140,9 +140,27 @@ export class FilterViewComponent {
         labelInputRangeRating.append(inputRating, spanMaxRatingValue);
         inputRangeRatingContainer.append(labelInputRangeRating);
         fieldSetRatingFilt.append(inputRangeRatingContainer);
-        this.element.append(fieldSetRatingFilt);
+        const divFoundProd = document.createElement('div');
+        divFoundProd.classList.add('wrapper-found-prod');
+        const spanTextFound = document.createElement('span');
+        spanTextFound.classList.add('found-text');
+        spanTextFound.textContent = 'Found: ';
+        const spanFoundCount = document.createElement('span');
+        spanFoundCount.classList.add('found-count');
+        const wrapperBtnStyle = document.createElement('div');
+        wrapperBtnStyle.classList.add('wrapper-btns-styles');
+        const bigStyleLayout = document.createElement('button');
+        bigStyleLayout.classList.add('big-style-btn');
+        bigStyleLayout.textContent = 'Big Version';
+        const smallStyleLayout = document.createElement('button');
+        smallStyleLayout.classList.add('small-style-btn');
+        smallStyleLayout.textContent = 'Small Version';
+        wrapperBtnStyle.append(bigStyleLayout, smallStyleLayout);
+        divFoundProd.append(spanTextFound, spanFoundCount);
+        this.element.append(fieldSetRatingFilt, divFoundProd, wrapperBtnStyle);
         const clearBtn = document.querySelector('.clear-btn') as HTMLButtonElement;
         (clearBtn as HTMLButtonElement).addEventListener('click', () => {
+            const spanCountProd = document.querySelector('.found-count');
             const allInputBrand = Array.from(document.querySelectorAll('.input-item'));
             const inputPrice = document.querySelector('.input-item-price');
             const maxPriceValue = document.querySelector('.max-price-value');
@@ -166,6 +184,7 @@ export class FilterViewComponent {
                     Number((b as HTMLDivElement).getAttribute('data'))
             );
             defaultArrCards.map((x) => (wrapperCards as Element).append(x));
+            (spanCountProd as HTMLSpanElement).textContent = `${defaultArrCards.length}`;
             wrapperItems.forEach((x) => ((x as HTMLDivElement).style.display = 'flex'));
             wrapperItems.forEach((x) => (x as HTMLDivElement).classList.remove('active-card'));
             (amountGoods as HTMLSpanElement).textContent = '0';
