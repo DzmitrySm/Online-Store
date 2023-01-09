@@ -17,5 +17,4 @@ function init() {
     const footer = new FooterViewComponent();
     document.body.append(footer.getElement());
 }
-
 init();
